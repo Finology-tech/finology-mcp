@@ -30,6 +30,17 @@ SAVE, Graduated, Extended, tiered Standard — returning monthly payment, lifeti
 forgiveness and tax on forgiveness for each, **plus the plans that are excluded and the
 eligibility rule that excludes them.**
 
+### `compare_married_filing_jointly_vs_separately_student_loans`
+
+For a married borrower, prices the filing-status decision. Filing separately removes the spouse's
+income from the income-driven payment calculation, which routinely moves the lifetime loan cost by
+tens of thousands of dollars.
+
+**It answers half the question on purpose, and says so.** The engine models the loan side exactly and
+does not model the tax cost of filing separately — lost credits, worse brackets, community-property
+splits — which is often large enough to reverse the answer. Returning only the favourable half as if
+it were the whole decision would be the same confident half-truth this server exists to replace.
+
 ### `estimate_rap_monthly_payment`
 
 The RAP monthly payment alone, for the common case. Requires the borrower's AGI and refuses to

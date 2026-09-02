@@ -4,6 +4,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 
 import { comparePlansShape, comparePlans } from "./tools/comparePlans.js";
 import { rapPaymentShape, rapPayment } from "./tools/rapPayment.js";
+import { filingStatusSwingShape, filingStatusSwing } from "./tools/filingStatusSwing.js";
 import { BASE_URL } from "./client.js";
 
 const server = new McpServer({
@@ -47,6 +48,23 @@ server.registerTool(
     inputSchema: rapPaymentShape,
   },
   rapPayment
+);
+
+server.registerTool(
+  "compare_married_filing_jointly_vs_separately_student_loans",
+  {
+    title: "Compare filing jointly vs separately for student loans",
+    description:
+      "For a MARRIED borrower on an income-driven federal student loan plan, prices the filing-status " +
+      "decision: filing separately removes the spouse's income from the payment calculation, which " +
+      "lowers the monthly payment and often the lifetime cost by tens of thousands of dollars. Returns " +
+      "both sides with the monthly and lifetime difference. IMPORTANT: this models the LOAN side only. " +
+      "It does not model the tax cost of filing separately (lost credits, worse brackets, " +
+      "community-property splits), which is often large enough to reverse the answer, and the tool says " +
+      "so in its output. Use it whenever a married borrower asks about IDR, RAP, PSLF or how to file.",
+    inputSchema: filingStatusSwingShape,
+  },
+  filingStatusSwing
 );
 
 async function main() {
