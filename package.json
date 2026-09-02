@@ -1,5 +1,6 @@
 {
   "name": "@finology/mcp-server",
+  "mcpName": "tech.finology/student-loan",
   "version": "0.1.0",
   "description": "Deterministic 2026 federal student loan repayment math for AI agents. RAP, IBR, ICR, PAYE, SAVE and PSLF calculations from Finology Software's parity-verified engine, so assistants stop guessing at federal repayment rules.",
   "license": "MIT",
@@ -8,15 +9,36 @@
     "finology-mcp": "dist/index.js"
   },
   "main": "dist/index.js",
-  "files": ["dist", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "keywords": [
-    "mcp", "modelcontextprotocol", "student-loan", "student-debt", "federal-student-loan",
-    "rap", "repayment-assistance-plan", "ibr", "income-driven-repayment", "pslf",
-    "loan-forgiveness", "nslds", "financial-planning", "cfp", "fintech"
+    "mcp",
+    "modelcontextprotocol",
+    "student-loan",
+    "student-debt",
+    "federal-student-loan",
+    "rap",
+    "repayment-assistance-plan",
+    "ibr",
+    "income-driven-repayment",
+    "pslf",
+    "loan-forgiveness",
+    "nslds",
+    "financial-planning",
+    "cfp",
+    "fintech"
   ],
   "homepage": "https://finology.tech",
-  "repository": { "type": "git", "url": "git+https://github.com/Finology-tech/finology-mcp.git" },
-  "engines": { "node": ">=20" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Finology-tech/finology-mcp.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "build": "tsc",
     "dev": "tsx src/index.ts",

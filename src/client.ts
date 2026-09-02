@@ -7,7 +7,7 @@
 // challenges), so a formula copied into an npm package is wrong within months and cannot
 // be corrected in the installs that already exist. Calling a maintained endpoint is the
 // only shape of this tool that stays true over time.
-const DEFAULT_BASE_URL = "https://internal-api.finology.tech";
+const DEFAULT_BASE_URL = "https://engine.finology.tech";
 
 export const BASE_URL = (process.env.FINOLOGY_API_BASE_URL ?? DEFAULT_BASE_URL).replace(/\/+$/, "");
 
