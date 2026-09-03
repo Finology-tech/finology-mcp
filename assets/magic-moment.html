@@ -1,0 +1,47 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Finology magic moment</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { width: 1200px; height: 675px; background: #4F46E5; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
+         display: flex; flex-direction: column; padding: 52px 60px; color: #fff; }
+  .eyebrow { font-size: 15px; letter-spacing: .16em; text-transform: uppercase; color: #C7D2FE; font-weight: 600; }
+  h1 { font-size: 40px; line-height: 1.18; font-weight: 700; margin-top: 14px; max-width: 1000px; letter-spacing: -0.02em; }
+  h1 em { font-style: normal; color: #FDE68A; }
+  .panel { margin-top: 30px; background: #fff; border-radius: 14px; padding: 26px 30px; color: #1e1b4b; flex: 1;
+           display: flex; flex-direction: column; }
+  .q { font-size: 15px; color: #4b5563; margin-bottom: 18px; }
+  .q b { color: #1e1b4b; }
+  .rows { display: flex; flex-direction: column; gap: 9px; }
+  .row { display: flex; align-items: center; gap: 14px; font-size: 17px; }
+  .tag { width: 92px; flex: none; font-size: 12px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase;
+         padding: 5px 0; text-align: center; border-radius: 5px; }
+  .ok { background: #dcfce7; color: #166534; }
+  .no { background: #fee2e2; color: #991b1b; }
+  .plan { font-weight: 700; width: 96px; flex: none; }
+  .detail { color: #4b5563; font-size: 15px; }
+  .foot { margin-top: auto; padding-top: 18px; border-top: 1px solid #e5e7eb; display: flex; justify-content: space-between;
+          align-items: baseline; font-size: 14px; color: #4b5563; }
+  .foot b { color: #1e1b4b; }
+  .try { margin-top: 20px; font-size: 19px; color: #E0E7FF; }
+  .try b { color: #fff; }
+</style>
+<div class="eyebrow">Finology Software</div>
+<h1>Ask your AI what a Parent PLUS borrower should do.<br>It will quote a plan that loan <em>isn't allowed to use.</em></h1>
+
+<div class="panel">
+  <div class="q"><b>$120,000 Parent PLUS loan · 7.54% · borrower AGI $70,000</b></div>
+  <div class="rows">
+    <div class="row"><span class="tag ok">Available</span><span class="plan">Standard</span><span class="detail">$1,427/mo · paid off in 119 months</span></div>
+    <div class="row"><span class="tag no">Excluded</span><span class="plan">RAP</span><span class="detail">not open to new enrollment for this loan type</span></div>
+    <div class="row"><span class="tag no">Excluded</span><span class="plan">IBR</span><span class="detail">not open to new enrollment for this loan type</span></div>
+    <div class="row"><span class="tag no">Excluded</span><span class="plan">PAYE</span><span class="detail">not open to new enrollment for this loan type</span></div>
+    <div class="row"><span class="tag no">Excluded</span><span class="plan">ICR</span><span class="detail">not open to new enrollment for this loan type</span></div>
+  </div>
+  <div class="foot">
+    <span>Every figure <b>parity-verified</b> against the federal rules, with the rule that excludes each plan.</span>
+    <span><b>npx @finology/mcp-server</b></span>
+  </div>
+</div>
+
+<div class="try">Run the same question in your assistant without it. <b>Then compare.</b></div>
