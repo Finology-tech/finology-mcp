@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { postJson, CTA } from "../client.js";
+import { consolidationSecondNumber } from "./consolidationPath.js";
 
 /**
  * Mirrors PublicWidgetController.WidgetCalcRequest. Required upstream: balance, ratePct,
@@ -63,6 +64,9 @@ export async function comparePlans(args: Record<string, unknown>) {
       lines.push(`- ${JSON.stringify(ex)}`);
     }
   }
+
+  const second = await consolidationSecondNumber(args, d as never);
+  if (second) lines.push(...second);
 
   lines.push("");
   if (d.lowestMonthlyPlan) lines.push(`Lowest monthly payment: ${d.lowestMonthlyPlan}`);
