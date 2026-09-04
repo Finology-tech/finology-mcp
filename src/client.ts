@@ -9,6 +9,19 @@
 // only shape of this tool that stays true over time.
 const DEFAULT_BASE_URL = "https://engine.finology.tech";
 
+// The User-Agent is how the engine counts this rung (PublicClientDailyUsages, client=mcp +
+// version). It was hardcoded "0.1.0" through two releases, so every 0.2.0/0.3.0 call was
+// counted as 0.1.0. Read the real version from package.json at load so it can never drift again.
+import { createRequire } from "node:module";
+const pkgVersion: string = (() => {
+  try {
+    return (createRequire(import.meta.url)("../package.json") as { version: string }).version;
+  } catch {
+    return "0.0.0";
+  }
+})();
+export const USER_AGENT = `finology-mcp-server/${pkgVersion}`;
+
 export const BASE_URL = (process.env.FINOLOGY_API_BASE_URL ?? DEFAULT_BASE_URL).replace(/\/+$/, "");
 
 /** A failure we can describe to the model, as opposed to one that crashes the transport. */
@@ -45,7 +58,7 @@ export async function postJson<T>(path: string, body: unknown): Promise<ApiResul
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "User-Agent": "finology-mcp-server/0.1.0",
+          "User-Agent": USER_AGENT,
         },
         body: JSON.stringify(body),
         signal: controller.signal,

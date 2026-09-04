@@ -1,7 +1,7 @@
 {
   "name": "@finology/mcp-server",
   "mcpName": "tech.finology/student-loan",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Deterministic 2026 federal student loan math for AI agents. RAP, IBR, ICR, PSLF payments, plan eligibility, and the married-filing-jointly vs separately trade-off, from Finology Software's parity-verified engine, so assistants stop guessing at federal repayment rules.",
   "license": "MIT",
   "type": "module",
