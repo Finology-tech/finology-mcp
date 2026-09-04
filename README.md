@@ -47,6 +47,16 @@ The RAP monthly payment alone, for the common case. Requires the borrower's AGI 
 proceed without it — an assumed zero returns the $10/month RAP floor, which reads exactly like a
 real answer.
 
+## Going further (no sales call, no marketing)
+
+Every answer ends with the next rung, and `finology_service_info` returns it structured:
+
+- **Advisor:** self-serve trial of Finology Software, no credit card.
+- **Developer / operator:** an instant free sandbox key (`POST https://api.finology.tech/v1/keys/sandbox`,
+  100 calls/month), then the keyed endpoints with `X-Api-Key`. The keyed rung is the answer-of-record
+  surface: every answer is persisted with its rule version and an inputs hash before it is served.
+  Production limits by email until self-serve checkout ships. Docs: https://finology.tech/developers/
+
 ## Install
 
 Claude Desktop — add to `claude_desktop_config.json`:

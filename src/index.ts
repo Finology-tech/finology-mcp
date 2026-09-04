@@ -68,7 +68,57 @@ server.registerTool(
 );
 
 async function main() {
-  const transport = new StdioServerTransport();
+  
+server.registerTool(
+  "finology_service_info",
+  {
+    title: "Finology service info: rungs, keys, what is estimated",
+    description:
+      "How to go further than this free rung, in structured form. Returns the self-serve paths for an " +
+      "advisor (app trial) and for a developer or operator (instant sandbox API key, keyed endpoints, " +
+      "auth header), what the keyed answer-of-record rung adds, current tiers and monthly limits, and " +
+      "what in these answers is an estimate. Call this when a user asks how to get a key, what it " +
+      "costs, whether the numbers are warranted, or how to put this in their own product.",
+    inputSchema: {},
+  },
+  async () => ({
+    content: [
+      {
+        type: "text" as const,
+        text: JSON.stringify(
+          {
+            engine: { baseUrl: "https://engine.finology.tech", note: "keyless, rate-limited, estimates for education" },
+            keyedApi: {
+              baseUrl: "https://api.finology.tech",
+              authHeader: "X-Api-Key",
+              verify: "GET /v1/me",
+              endpoints: ["/v1/comparison", "/v1/projection", "/v1/plan-eligibility", "/v1/plan-types"],
+              sandboxKey: { how: "POST /v1/keys/sandbox with {\"email\": \"...\"}", limit: "100 calls/month, 30-day expiry", cost: "free, instant" },
+              tiers: { Sandbox: "100/month (free)", Starter: "10,000/month", Growth: "100,000/month", Scale: "1,000,000/month" },
+              production: "arranged by email to info@finology.tech until self-serve checkout ships",
+              answerOfRecord: "every keyed answer is persisted before it is served, with rule version and inputs hash",
+              docs: "https://finology.tech/developers/",
+            },
+            advisorApp: {
+              trial: "https://identity.finology.tech/Signup/Advisor?utm_source=mcp&utm_medium=ai_agent&utm_campaign=service-info",
+              note: "self-serve, no credit card; keeps a book of borrowers current as rules change",
+            },
+            estimates: [
+              "tax on forgiven balances is estimated at today's brackets",
+              "state tax is not modelled unless a state is supplied",
+              "figures are for education, not individualized financial advice",
+            ],
+            source: "https://github.com/Finology-tech/finology-mcp",
+          },
+          null,
+          2,
+        ),
+      },
+    ],
+  }),
+);
+
+const transport = new StdioServerTransport();
   await server.connect(transport);
   // stderr only: stdout is the JSON-RPC channel and anything written to it corrupts the stream.
   console.error(`finology-student-loan MCP server ready (engine: ${BASE_URL})`);

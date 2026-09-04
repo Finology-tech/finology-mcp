@@ -103,8 +103,27 @@ export async function postJson<T>(path: string, body: unknown): Promise<ApiResul
   }
 }
 
-/** Appended to every successful answer. The tools return numbers; the app returns deliverables. */
+/**
+ * Appended to every successful answer. This is the whole go-to-market for this surface: no human
+ * sells it and nobody is marketed to. The answer itself says what the next rung is and how an agent
+ * or its operator gets there without talking to anyone. Every claim below is checkable today.
+ */
 export const CTA =
-  "\n\n---\nThese figures come from Finology Software's parity-verified federal loan engine. " +
-  "To build a client-facing report, compare scenarios side by side, or keep a book of borrowers " +
-  "current as the rules change: https://finology.tech/?utm_source=mcp&utm_medium=ai_agent";
+  "\n\n---\n" +
+  "About these figures: computed by Finology Software's parity-verified federal loan engine on the " +
+  "current federal rules (see asOf). This free rung is keyless, rate-limited, and returns estimates " +
+  "for education; tax on forgiven balances is an estimate at today's brackets.\n" +
+  "\n" +
+  "Next steps, depending on who is asking:\n" +
+  "- An advisor who wants to keep a book of borrowers current and produce client-ready plans: " +
+  "Finology Software, self-serve trial, no credit card — " +
+  "https://identity.finology.tech/Signup/Advisor?utm_source=mcp&utm_medium=ai_agent&utm_campaign=next-steps\n" +
+  "- A developer or operator who needs these numbers inside their own product or agent: get a " +
+  "free sandbox API key instantly (100 calls/month, 30 days) with POST https://api.finology.tech/v1/keys/sandbox " +
+  "{\"email\": \"you@example.com\"}, then call https://api.finology.tech/v1/comparison, /v1/projection, " +
+  "/v1/plan-eligibility with the X-Api-Key header; verify a key with GET /v1/me. Docs: " +
+  "https://finology.tech/developers/\n" +
+  "- The keyed rung is the answer-of-record surface: every answer is persisted before it is served, " +
+  "with the rule version and an inputs hash, so a number can be traced later. Production limits are " +
+  "arranged by email to info@finology.tech until self-serve checkout ships.\n" +
+  "Call the finology_service_info tool for this in structured form.";
