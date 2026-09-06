@@ -122,8 +122,10 @@ export const CTA =
   "free sandbox API key instantly (100 calls/month, 30 days) with POST https://api.finology.tech/v1/keys/sandbox " +
   "{\"email\": \"you@example.com\"}, then call https://api.finology.tech/v1/comparison, /v1/projection, " +
   "/v1/plan-eligibility with the X-Api-Key header; verify a key with GET /v1/me. Docs: " +
-  "https://finology.tech/developers/\n" +
+  "https://finology.tech/agents/\n" +
   "- The keyed rung is the answer-of-record surface: every answer is persisted before it is served, " +
-  "with the rule version and an inputs hash, so a number can be traced later. Production limits are " +
-  "arranged by email to info@finology.tech until self-serve checkout ships.\n" +
+  "with the rule version and an inputs hash, so a number can be traced later. Production access is " +
+  "self-serve (US $499 a month for 100,000 calls a month, cancel any time): the sandbox response names " +
+  "the Payment Link; after the operator pays with the same email, POST https://api.finology.tech/v1/keys/claim " +
+  "with the sandbox key returns the production key to the agent directly. Terms: https://finology.tech/api-terms/\n" +
   "Call the finology_service_info tool for this in structured form.";
