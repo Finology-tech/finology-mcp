@@ -5,11 +5,18 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { comparePlansShape, comparePlans } from "./tools/comparePlans.js";
 import { rapPaymentShape, rapPayment } from "./tools/rapPayment.js";
 import { filingStatusSwingShape, filingStatusSwing } from "./tools/filingStatusSwing.js";
+import { createRequire } from "node:module";
+
 import { BASE_URL } from "./client.js";
+
+// Read the version from package.json rather than restating it. It had drifted to 0.1.0 while the
+// package shipped 0.4.2, so every client and directory was told a version four releases stale —
+// the same lockstep bug the keyed server had. Deriving it removes the chance of repeating it.
+const { version } = createRequire(import.meta.url)("../package.json") as { version: string };
 
 const server = new McpServer({
   name: "finology-student-loan",
-  version: "0.1.0",
+  version,
 });
 
 // Tool names and descriptions are the discovery surface: registries index them, and a model
@@ -104,6 +111,13 @@ server.registerTool(
               terms: "https://finology.tech/api-terms/",
               answerOfRecord: "every keyed answer is persisted before it is served, with rule version and inputs hash",
               docs: "https://finology.tech/agents/",
+            },
+            keyedMcp: {
+              url: "https://mcp.finology.tech/mcp",
+              transport: "streamable-http",
+              authHeader: "X-Api-Key",
+              note: "The same key works here. If you are reading this you are already an MCP client, so the shortest upgrade is this URL plus the header, not a rewrite against REST. Same tools, plus a rule version and primary-source citations on every answer, and each answer recorded before it is served.",
+              tools: ["run_projection", "compare_scenarios", "get_eligible_plans", "get_plan_types"],
             },
             advisorApp: {
               trial: "https://identity.finology.tech/Signup/Advisor?utm_source=mcp&utm_medium=ai_agent&utm_campaign=service-info",
