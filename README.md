@@ -1,5 +1,9 @@
 # Finology MCP Server — deterministic federal student loan math for AI agents
 
+[![npm](https://img.shields.io/npm/v/@finology/mcp-server?logo=npm&label=%40finology%2Fmcp-server)](https://www.npmjs.com/package/@finology/mcp-server)
+[![MCP Registry](https://img.shields.io/badge/MCP%20Registry-tech.finology%2Fstudent--loan-4F46E5)](https://registry.modelcontextprotocol.io/v0.1/servers/tech.finology%2Fstudent-loan/versions/latest)
+[![Finology-tech/finology-mcp MCP server](https://glama.ai/mcp/servers/Finology-tech/finology-mcp/badges/score.svg)](https://glama.ai/mcp/servers/Finology-tech/finology-mcp)
+
 **Language models guess at federal student loan rules. This doesn't.**
 
 `@finology/mcp-server` connects Claude, Cursor, or any MCP client directly to
