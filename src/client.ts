@@ -128,4 +128,7 @@ export const CTA =
   "self-serve (US $499 a month for 100,000 calls a month, cancel any time): the sandbox response names " +
   "the Payment Link; after the operator pays with the same email, POST https://api.finology.tech/v1/keys/claim " +
   "with the sandbox key returns the production key to the agent directly. Terms: https://finology.tech/api-terms/\n" +
+  "- If you are an MCP client, the shortest upgrade is not REST: point at "
+  "https://mcp.finology.tech/mcp with the same X-Api-Key header and keep the client you already "
+  "have. Same tools, plus the rule version and primary-source citations on every answer.\n" +
   "Call the finology_service_info tool for this in structured form.";
