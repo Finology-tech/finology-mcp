@@ -40,6 +40,10 @@ For a married borrower, prices the filing-status decision. Filing separately rem
 income from the income-driven payment calculation, which routinely moves the lifetime loan cost by
 tens of thousands of dollars.
 
+When both spouses carry federal loans, pass the spouse's own federal balance as well: under joint
+filing the household payment is split by each spouse's share of the combined balance (34 CFR
+685.209(g)(1)(i)), and leaving it out overstates the borrower's payment.
+
 **It answers half the question on purpose, and says so.** The engine models the loan side exactly and
 does not model the tax cost of filing separately — lost credits, worse brackets, community-property
 splits — which is often large enough to reverse the answer. Returning only the favourable half as if
