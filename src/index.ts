@@ -100,8 +100,8 @@ server.registerTool(
               authHeader: "X-Api-Key",
               verify: "GET /v1/me",
               endpoints: ["/v1/comparison", "/v1/projection", "/v1/plan-eligibility", "/v1/plan-types"],
-              sandboxKey: { how: "POST /v1/keys/sandbox with {\"email\": \"...\"}", limit: "100 calls/month, 30-day expiry", cost: "free, instant" },
-              tiers: { Sandbox: "100/month (free)", Production: "100,000/month (US $499 a month, cancel any time)", higher: "by email to support@finology.tech" },
+              sandboxKey: { how: "POST /v1/keys/sandbox with {\"email\": \"...\"}", limit: "25 calls/month, 30-day expiry", cost: "free, instant" },
+              tiers: { Sandbox: "25/month (free)", Production: "100,000/month (US $499 a month, cancel any time)", higher: "by email to support@finology.tech" },
               production: {
                 offer: "US $499 a month for 100,000 calls a month, cancel any time",
                 buy: "https://buy.stripe.com/28E4gy3LHf188KYd5kaZi01",

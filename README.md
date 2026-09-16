@@ -61,7 +61,7 @@ Every answer ends with the next rung, and `finology_service_info` returns it str
 
 - **Advisor:** self-serve trial of Finology Software, no credit card.
 - **Developer / operator:** an instant free sandbox key (`POST https://api.finology.tech/v1/keys/sandbox`,
-  100 calls/month), then the keyed endpoints with `X-Api-Key`. The keyed rung is the answer-of-record
+  25 calls/month), then the keyed endpoints with `X-Api-Key`. The keyed rung is the answer-of-record
   surface: every answer is persisted with its rule version and an inputs hash before it is served.
   Production limits by email until self-serve checkout ships. Docs: https://finology.tech/developers/
 
