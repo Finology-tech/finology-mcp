@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@finology/mcp-server?logo=npm&label=%40finology%2Fmcp-server)](https://www.npmjs.com/package/@finology/mcp-server)
 [![MCP Registry](https://img.shields.io/badge/MCP%20Registry-tech.finology%2Fstudent--loan-4F46E5)](https://registry.modelcontextprotocol.io/v0.1/servers/tech.finology%2Fstudent-loan/versions/latest)
 [![Finology-tech/finology-mcp MCP server](https://glama.ai/mcp/servers/Finology-tech/finology-mcp/badges/score.svg)](https://glama.ai/mcp/servers/Finology-tech/finology-mcp)
+[![Claude Connectors Directory](https://img.shields.io/badge/Claude%20Directory-Finology%20Software-4F46E5)](https://claude.ai/directory/finology-student-loans)
 
 **Language models guess at federal student loan rules. This doesn't.**
 
@@ -66,6 +67,12 @@ Every answer ends with the next rung, and `finology_service_info` returns it str
   Production limits by email until self-serve checkout ships. Docs: https://finology.tech/developers/
 
 ## Install
+
+**Claude (web, desktop and mobile) — one click.** Finology Software is listed in the
+[Claude Connectors Directory](https://claude.ai/directory/finology-student-loans). Add the
+connector there and Claude calls the engine directly. No account, no key, nothing to configure.
+
+Everything below is the manual route, for other MCP clients or for a local install.
 
 Claude Desktop — add to `claude_desktop_config.json`:
 
