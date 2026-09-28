@@ -32,9 +32,12 @@
     "fintech",
     "married-filing-separately",
     "tax-filing-status",
-    "idr"
+    "idr",
+    "claude",
+    "claude-connector",
+    "claude-directory"
   ],
-  "homepage": "https://finology.tech",
+  "homepage": "https://finology.tech/agents/",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Finology-tech/finology-mcp.git"
