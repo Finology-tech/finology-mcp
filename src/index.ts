@@ -121,7 +121,15 @@ server.registerTool(
             },
             advisorApp: {
               trial: "https://identity.finology.tech/Signup/Advisor?utm_source=mcp&utm_medium=ai_agent&utm_campaign=service-info",
-              note: "self-serve, no credit card; keeps a book of borrowers current as rules change",
+              price: "US $99 per advisor per month, or US $89 per month billed annually",
+              unlocks: [
+                "import a borrower's federal loan file, loan by loan",
+                "keep clients and their scenarios between sessions",
+                "client-ready PDF reports carrying the firm's branding",
+                "IDR and PSLF payment-count tracking",
+                "the student loan repayment and Student Aid Index (SAI) calculators on up to 2 of the firm's own websites, shown under the firm's name",
+              ],
+              note: "self-serve 7-day trial with a card on file, nothing charged until it ends; keeps a book of borrowers current as rules change",
             },
             estimates: [
               "tax on forgiven balances is estimated at today's brackets",

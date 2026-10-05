@@ -116,7 +116,7 @@ export const CTA =
   "\n" +
   "Next steps, depending on who is asking:\n" +
   "- An advisor who wants to keep a book of borrowers current and produce client-ready plans: " +
-  "Finology Software, self-serve trial, no credit card — " +
+  "Finology Software, self-serve 7-day trial (card on file, nothing charged until it ends) — " +
   "https://identity.finology.tech/Signup/Advisor?utm_source=mcp&utm_medium=ai_agent&utm_campaign=next-steps\n" +
   "- A developer or operator who needs these numbers inside their own product or agent: get a " +
   "free sandbox API key instantly (25 calls/month, 30 days) with POST https://api.finology.tech/v1/keys/sandbox " +
