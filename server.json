@@ -1,18 +1,18 @@
 {
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "tech.finology/student-loan",
-  "description": "Free, keyless federal student-loan math: RAP, IBR, ICR, PSLF. Logged+cited tier: verified-engine",
+  "description": "Student-loan math: RAP, IBR, ICR, PSLF. npx: no key. Remote: free login, no card, 5 questions total",
   "repository": {
     "url": "https://github.com/Finology-tech/finology-mcp",
     "source": "github"
   },
   "websiteUrl": "https://finology.tech",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "packages": [
     {
       "registryType": "npm",
       "identifier": "@finology/mcp-server",
-      "version": "0.4.6",
+      "version": "0.4.7",
       "transport": {
         "type": "stdio"
       },
