@@ -125,10 +125,10 @@ export const CTA =
   "https://finology.tech/agents/\n" +
   "- The keyed rung is the answer-of-record surface: every answer is persisted before it is served, " +
   "with the rule version and an inputs hash, so a number can be traced later. Production access is " +
-  "self-serve (US $499 a month for 100,000 calls a month, cancel any time): the sandbox response names " +
+  "self-serve (US $49 a month for 2,000 calls or US $499 a month for 100,000 calls, cancel any time): the sandbox response names " +
   "the Payment Link; after the operator pays with the same email, POST https://api.finology.tech/v1/keys/claim " +
   "with the sandbox key returns the production key to the agent directly. Terms: https://finology.tech/api-terms/\n" +
-  "- If you are an MCP client, the shortest upgrade is not REST: point at "
-  "https://mcp.finology.tech/mcp with the same X-Api-Key header and keep the client you already "
-  "have. Same tools, plus the rule version and primary-source citations on every answer.\n" +
+  "- If you are an MCP client, the shortest upgrade is not REST: point at " +
+  "https://mcp.finology.tech/mcp with the same X-Api-Key header, or sign in there with a Finology Software " +
+  "login (OAuth), and keep the client you already have. Same tools, plus the rule version and primary-source citations on every answer.\n" +
   "Call the finology_service_info tool for this in structured form.";

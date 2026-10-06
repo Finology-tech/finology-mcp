@@ -64,13 +64,18 @@ Every answer ends with the next rung, and `finology_service_info` returns it str
 - **Developer / operator:** an instant free sandbox key (`POST https://api.finology.tech/v1/keys/sandbox`,
   25 calls/month), then the keyed endpoints with `X-Api-Key`. The keyed rung is the answer-of-record
   surface: every answer is persisted with its rule version and an inputs hash before it is served.
-  Production limits by email until self-serve checkout ships. Docs: https://finology.tech/developers/
+  Production access is self-serve: Developer, US $49 a month for 2,000 calls, or Platform, US $499 a month
+  for 100,000 calls. Docs: https://finology.tech/developers/
+- **Keyed remote MCP:** `https://mcp.finology.tech/mcp`. Sign in with a Finology Software login (OAuth),
+  which is how Claude connects, or send the `X-Api-Key` header. Every answer is logged and carries a
+  verify link.
 
 ## Install
 
 **Claude (web, desktop and mobile) — one click.** Finology Software is listed in the
 [Claude Connectors Directory](https://claude.ai/directory/finology-student-loans). Add the
-connector there and Claude calls the engine directly. No account, no key, nothing to configure.
+connector there and sign in with a free Finology Software login (no card): 5 questions in total,
+no daily limit. Subscribers are unlimited.
 
 Everything below is the manual route, for other MCP clients or for a local install.
 
@@ -87,7 +92,7 @@ Claude Desktop — add to `claude_desktop_config.json`:
 }
 ```
 
-No API key. No account. The calculation endpoints are public.
+The local package needs no API key and no account: it calls the public calculation endpoints.
 
 ## What is and is not in this repository
 
@@ -108,7 +113,7 @@ These tools return figures. They do not produce client-facing deliverables, save
 parse NSLDS files, or track PSLF qualifying payments over time. For those, and for a book of
 borrowers kept current as the rules change: **[finology.tech](https://finology.tech/?utm_source=mcp&utm_medium=ai_agent)**
 
-Rate-limited per IP. Not financial advice.
+The local package is rate-limited per IP. Not financial advice.
 
 ## License
 

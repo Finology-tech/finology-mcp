@@ -116,6 +116,7 @@ server.registerTool(
               url: "https://mcp.finology.tech/mcp",
               transport: "streamable-http",
               authHeader: "X-Api-Key",
+              oauth: "or sign in with a Finology Software login (OAuth 2.1), which is how Claude connects",
               note: "The same key works here. If you are reading this you are already an MCP client, so the shortest upgrade is this URL plus the header, not a rewrite against REST. Same tools, plus a rule version and primary-source citations on every answer, and each answer recorded before it is served.",
               tools: ["run_projection", "compare_scenarios", "get_eligible_plans", "get_plan_types"],
             },
