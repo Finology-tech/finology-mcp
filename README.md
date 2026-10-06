@@ -75,7 +75,9 @@ Every answer ends with the next rung, and `finology_service_info` returns it str
 **Claude (web, desktop and mobile) — one click.** Finology Software is listed in the
 [Claude Connectors Directory](https://claude.ai/directory/finology-student-loans). Add the
 connector there and sign in with a free Finology Software login (no card): 5 questions in total,
-no daily limit. Subscribers are unlimited.
+no daily limit. Subscribers are unlimited, and a subscriber's login also lists their own clients in
+the same connector (`list_my_clients`, `run_projection_for_client`,
+`get_balance_trajectory_for_client`).
 
 Everything below is the manual route, for other MCP clients or for a local install.
 
