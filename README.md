@@ -24,14 +24,17 @@ wrong most confidently:
   $50 per *qualifying dependent* — and a spouse is not a dependent. Approximating it from older
   IDR formulas gives the wrong answer.
 - **A consolidation that repaid a PLUS loan is restricted to ICR.**
-- **PAYE and SAVE are closed to new enrollment.**
+- **PAYE and ICR are still open, with conditions, until no later than July 1, 2028.** Following
+  Federal Student Aid, PAYE is open to a PAYE "new borrower" with no new loan or consolidation on
+  or after July 1, 2026, and ICR is open to eligible loan types. Loans made on or after July 1, 2026
+  can use only the tiered Standard plan or RAP. SAVE is closed to new enrollment.
 
 ## Tools
 
 ### `compare_federal_student_loan_repayment_plans`
 
-Compares a balance across every plan the borrower is actually eligible for — RAP, IBR, ICR, PAYE,
-SAVE, Graduated, Extended, tiered Standard — returning monthly payment, lifetime cost, projected
+Compares a balance across every plan the borrower is actually eligible for — Standard, tiered
+Standard, RAP, IBR, PAYE and ICR — returning monthly payment, lifetime cost, projected
 forgiveness and tax on forgiveness for each, **plus the plans that are excluded and the
 eligibility rule that excludes them.**
 
@@ -47,7 +50,7 @@ filing the household payment is split by each spouse's share of the combined bal
 
 **It answers half the question on purpose, and says so.** The engine models the loan side exactly and
 does not model the tax cost of filing separately — lost credits, worse brackets, community-property
-splits — which is often large enough to reverse the answer. Returning only the favourable half as if
+splits — which is often large enough to reverse the answer. Returning only the favorable half as if
 it were the whole decision would be the same confident half-truth this server exists to replace.
 
 ### `estimate_rap_monthly_payment`
