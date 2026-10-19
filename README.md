@@ -7,7 +7,7 @@
 
 **Language models guess at federal student loan rules. This doesn't.**
 
-`@finology/mcp-server` connects Claude, Cursor, or any MCP client directly to
+`@finology/mcp-server` connects Claude, GitHub Copilot, Cursor, or any MCP client directly to
 [Finology Software](https://finology.tech)'s parity-verified federal repayment engine. Every
 number is computed server-side against current federal rules and returned with a
 `parityVerified` flag. No formulas are approximated, and none are hardcoded into this package.
@@ -70,7 +70,7 @@ Every answer ends with the next rung, and `finology_service_info` returns it str
   Production access is self-serve: Developer, US $49 a month for 2,000 calls, or Platform, US $499 a month
   for 100,000 calls. Docs: https://finology.tech/developers/
 - **Keyed remote MCP:** `https://mcp.finology.tech/mcp`. Sign in with a Finology Software login (OAuth),
-  which is how Claude connects, or send the `X-Api-Key` header. Every answer is logged and carries a
+  which is how Claude, ChatGPT and Microsoft Copilot connect, or send the `X-Api-Key` header. Every answer is logged and carries a
   verify link.
 
 ## Install
@@ -81,6 +81,17 @@ connector there and sign in with a free Finology Software login (no card): 5 que
 no daily limit. Subscribers are unlimited, and a subscriber's login also lists their own clients in
 the same connector (`list_my_clients`, `run_projection_for_client`,
 `get_balance_trajectory_for_client`).
+
+**ChatGPT.** Finology Software is in the
+[ChatGPT plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6abbf32753248191a0dbf90da0f2a5b6),
+with the same free login.
+
+**Microsoft Copilot.** GitHub Copilot (including its free plan) adds the remote server once:
+`copilot mcp add --transport http finology https://mcp.finology.tech/free`, then signs in with a
+Finology Software login the first time it calls a tool; GitHub Copilot in Visual Studio Code uses the
+same address and sign-in. In Copilot Studio, add a Model Context Protocol tool with that URL and
+OAuth 2.0 Dynamic discovery; running the agent uses your firm's Copilot credits. Setup:
+https://finology.tech/finology-software-in-microsoft-copilot/
 
 Everything below is the manual route, for other MCP clients or for a local install.
 
