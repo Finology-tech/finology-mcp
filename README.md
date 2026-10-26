@@ -63,21 +63,21 @@ real answer.
 
 Every answer ends with the next rung, and `finology_service_info` returns it structured:
 
-- **Advisor:** Finology Software, US $99 per advisor per month or $89 per month billed annually, with a self-serve 7-day trial, no card required (add a card to keep the subscription after day 7). Includes client file import, saved scenarios, branded client reports, and the student loan and SAI calculators on up to 2 of the firm's own websites.
+- **Advisor:** Finology Software, US $99 per advisor per month or $89 per month billed annually, with a self-serve 7-day trial, no credit card required (add a card to keep the subscription after day 7). Includes client file import, saved scenarios, branded client reports, and the student loan and SAI calculators on up to 2 of the firm's own websites.
 - **Developer / operator:** an instant free sandbox key (`POST https://api.finology.tech/v1/keys/sandbox`,
   25 calls/month), then the keyed endpoints with `X-Api-Key`. The keyed rung is the answer-of-record
   surface: every answer is persisted with its rule version and an inputs hash before it is served.
   Production access is self-serve: Developer, US $49 a month for 2,000 calls, or Platform, US $499 a month
   for 100,000 calls. Docs: https://finology.tech/developers/
 - **Keyed remote MCP:** `https://mcp.finology.tech/mcp`. Sign in with a Finology Software login (OAuth),
-  which is how Claude, ChatGPT and Microsoft Copilot connect, or send the `X-Api-Key` header. Every answer is logged and carries a
+  which is how Claude, ChatGPT and GitHub Copilot connect, or send the `X-Api-Key` header. Every answer is logged and carries a
   verify link.
 
 ## Install
 
 **Claude (web, desktop and mobile) — one click.** Finology Software is listed in the
 [Claude Connectors Directory](https://claude.ai/directory/finology-student-loans). Add the
-connector there and sign in with a free Finology Software login (no card): 5 questions in total,
+connector there and sign in with a free Finology Software login (no credit card): 5 questions in total,
 no daily limit. Subscribers are unlimited, and a subscriber's login also lists their own clients in
 the same connector (`list_my_clients`, `run_projection_for_client`,
 `get_balance_trajectory_for_client`).
@@ -86,7 +86,7 @@ the same connector (`list_my_clients`, `run_projection_for_client`,
 [ChatGPT plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6abbf32753248191a0dbf90da0f2a5b6),
 with the same free login.
 
-**Microsoft Copilot.** GitHub Copilot (including its free plan) adds the remote server once:
+**GitHub Copilot and Copilot Studio.** GitHub Copilot (including its free plan) adds the remote server once:
 `copilot mcp add --transport http finology https://mcp.finology.tech/free`, then signs in with a
 Finology Software login the first time it calls a tool; GitHub Copilot in Visual Studio Code uses the
 same address and sign-in. In Copilot Studio, add a Model Context Protocol tool with that URL and
