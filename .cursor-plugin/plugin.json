@@ -1,7 +1,7 @@
 {
   "name": "finology-mcp",
   "description": "Federal student loan math for Cursor's agent. RAP, IBR, ICR, PSLF and the new Standard plan: monthly payments, plan eligibility from the loan file, payoff or forgiveness, and married filing jointly vs separately, from Finology Software's verified engine. Try it free with a Finology login.",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "author": {
     "name": "Finology Software"
   },
