@@ -31,7 +31,11 @@ server.registerTool(
       "Compares a US federal student loan across every repayment plan the borrower is actually " +
       "eligible for — RAP (Repayment Assistance Plan), IBR, ICR, PAYE, SAVE, Graduated, Extended " +
       "and the tiered Standard plan — returning the monthly payment and lifetime cost for each, " +
-      "plus which plans are excluded and the eligibility rule that excludes them. Computed by " +
+      "plus which plans are excluded and the eligibility rule that excludes them. A balance and " +
+      "income are enough: when the interest rate is not known (a linked account often shows the " +
+      "balance only), omit ratePct and the federal rate for the loan type is used and stated. Set " +
+      "loansMadeOnOrAfterJuly2026 when the loans are new, so only the plans new loans can elect are " +
+      "priced. Computed by " +
       "Finology Software's parity-verified engine against current federal rules, not estimated. " +
       "Use this instead of calculating federal repayment math yourself: eligibility depends on " +
       "loan type and origination date in ways that are easy to get wrong (a Parent PLUS loan is " +
@@ -68,7 +72,9 @@ server.registerTool(
       "both sides with the monthly and lifetime difference. IMPORTANT: this models the LOAN side only. " +
       "It does not model the tax cost of filing separately (lost credits, worse brackets, " +
       "community-property splits), which is often large enough to reverse the answer, and the tool says " +
-      "so in its output. Use it whenever a married borrower asks about IDR, RAP, PSLF or how to file.",
+      "so in its output. A balance and both incomes are enough: omit ratePct when the rate is not " +
+      "known and the federal rate for the loan type is used and stated. Use it whenever a married " +
+      "borrower asks about IDR, RAP, PSLF or how to file.",
     inputSchema: filingStatusSwingShape,
   },
   filingStatusSwing

@@ -1,5 +1,11 @@
 import { z } from "zod";
 import { postJson, CTA } from "../client.js";
+import {
+  resolveRate,
+  preamble,
+  RATE_PCT_DESCRIPTION,
+  NEW_LOANS_DESCRIPTION,
+} from "../assumedRate.js";
 
 /**
  * The filing-status decision, priced on the loan side.
@@ -18,8 +24,8 @@ import { postJson, CTA } from "../client.js";
 export const filingStatusSwingShape = {
   balance: z.number().min(0).max(100_000_000)
     .describe("Current federal loan balance in dollars."),
-  ratePct: z.number().min(0).max(100)
-    .describe("Weighted average interest rate as a percentage, e.g. 6.54 for 6.54%."),
+  ratePct: z.number().min(0).max(100).optional()
+    .describe(RATE_PCT_DESCRIPTION),
   borrowerAgi: z.number().min(0).max(10_000_000)
     .describe("The borrower's own annual adjusted gross income in dollars."),
   spouseAgi: z.number().min(0).max(10_000_000)
@@ -35,6 +41,8 @@ export const filingStatusSwingShape = {
     "direct_consolidation_with_plus",
   ]).default("direct_unsubsidized")
     .describe("Federal loan type. Drives plan eligibility, not just the rate."),
+  loansMadeOnOrAfterJuly2026: z.boolean().default(false)
+    .describe(NEW_LOANS_DESCRIPTION),
 };
 
 interface Plan {
@@ -55,13 +63,24 @@ const usd = (n: number) =>
   n.toLocaleString("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
 export async function filingStatusSwing(args: Record<string, unknown>) {
-  const base = {
+  const loanType = (args.loanType as string | undefined) ?? "direct_unsubsidized";
+  const resolved = resolveRate(args.ratePct, loanType);
+  if (!resolved.ok) {
+    return { content: [{ type: "text" as const, text: resolved.message }], isError: true };
+  }
+  const { rate, assumed } = resolved;
+  const newLoans = args.loansMadeOnOrAfterJuly2026 === true;
+
+  const base: Record<string, unknown> = {
     balance: args.balance,
-    ratePct: args.ratePct,
+    ratePct: rate,
     borrowerAgi: args.borrowerAgi,
     dependents: args.dependents ?? 0,
-    loanType: args.loanType ?? "direct_unsubsidized",
+    loanType,
   };
+  // The widget's existing new-loan field: the engine's date rules decide eligibility.
+  if (newLoans) base.borrowedOnOrAfterJul12026 = true;
+  const opening = preamble(assumed, newLoans).map((line) => line + "\n").join("");
 
   // Two runs. Jointly counts the spouse's income; separately does not — that single
   // difference is the entire decision.
@@ -81,8 +100,11 @@ export async function filingStatusSwing(args: Record<string, unknown>) {
   if (!separate.ok) return { content: [{ type: "text" as const, text: separate.message }], isError: true };
 
   // Compare income-driven plans only. Standard is unaffected by filing status, so including
-  // it would dilute the swing with a row that cannot move.
-  const idrOnly = (r: CalcResponse) => r.plans.filter((p) => p.plan !== "standard");
+  // it would dilute the swing with a row that cannot move. The tiered Standard plan
+  // (obbb_standard) is not income-driven either; it is only priced for new loans, so excluding
+  // it changes no answer for older loans.
+  const idrOnly = (r: CalcResponse) =>
+    r.plans.filter((p) => p.plan !== "standard" && p.plan !== "obbb_standard");
 
   const bestJoint = idrOnly(joint.data).sort((a, b) => a.lifetimeCost - b.lifetimeCost)[0];
   const bestSeparate = idrOnly(separate.data).sort((a, b) => a.lifetimeCost - b.lifetimeCost)[0];
@@ -91,7 +113,7 @@ export async function filingStatusSwing(args: Record<string, unknown>) {
     return {
       content: [{
         type: "text" as const,
-        text: "This loan book has no income-driven plan available, so filing status does not change the repayment maths here. " +
+        text: opening + "This loan book has no income-driven plan available, so filing status does not change the repayment maths here. " +
           "Run the plan comparison tool to see which plans are open and which federal rule excludes the rest." + CTA,
       }],
     };
@@ -126,7 +148,7 @@ export async function filingStatusSwing(args: Record<string, unknown>) {
 
   return {
     content: [
-      { type: "text" as const, text: lines.join("\n") + CTA },
+      { type: "text" as const, text: opening + lines.join("\n") + CTA },
       {
         type: "text" as const,
         text: "```json\n" + JSON.stringify({
@@ -135,6 +157,8 @@ export async function filingStatusSwing(args: Record<string, unknown>) {
           monthlyDelta,
           lifetimeDelta,
           taxSideModelled: false,
+          ...(assumed ? { assumedRate: assumed } : {}),
+          ...(newLoans ? { loansMadeOnOrAfterJuly2026: true } : {}),
         }, null, 2) + "\n```",
       },
     ],
