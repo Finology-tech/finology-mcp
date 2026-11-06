@@ -7,7 +7,7 @@
     "source": "github"
   },
   "websiteUrl": "https://finology.tech/borrowers/",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "packages": [
     {
       "registryType": "npm",
@@ -32,6 +32,15 @@
     {
       "type": "streamable-http",
       "url": "https://mcp.finology.tech/free"
+    }
+  ],
+  "icons": [
+    {
+      "src": "https://finology.tech/wp-content/uploads/2026/10/finology-logomark-96.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "96x96"
+      ]
     }
   ]
 }
