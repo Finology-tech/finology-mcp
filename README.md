@@ -38,6 +38,19 @@ Standard, RAP, IBR, PAYE and ICR — returning monthly payment, lifetime cost, p
 forgiveness and tax on forgiveness for each, **plus the plans that are excluded and the
 eligibility rule that excludes them.**
 
+**A balance and income are enough.** A linked loan account often shows the balance only. Omit
+`ratePct` and the tool uses the 2026-27 federal rate for the loan type (undergraduate Direct
+Unsubsidized or Subsidized 6.52%, Grad PLUS and Parent PLUS 9.07%) and says so as the first line
+of the answer. Graduate and professional Direct Unsubsidized loans carry 8.07%; the answer names
+it, so pass `ratePct: 8.07` for those. A consolidation loan has no federal rate (it is the weighted
+average of the loans it repaid, rounded up to the next one-eighth of a percent), so it still needs
+`ratePct`, and the tool asks for it.
+
+Set `loansMadeOnOrAfterJuly2026: true` when the loans were first disbursed (or consolidated) on or
+after July 1, 2026. The engine then prices only the plans new loans can elect: RAP and the tiered
+Standard plan (a Parent PLUS loan: the tiered Standard plan only). Left false, the loans are run as
+made before that date.
+
 ### `compare_married_filing_jointly_vs_separately_student_loans`
 
 For a married borrower, prices the filing-status decision. Filing separately removes the spouse's
@@ -47,6 +60,9 @@ tens of thousands of dollars.
 When both spouses carry federal loans, pass the spouse's own federal balance as well: under joint
 filing the household payment is split by each spouse's share of the combined balance (34 CFR
 685.209(g)(1)(i)), and leaving it out overstates the borrower's payment.
+
+A balance and both incomes are enough here too: `ratePct` and `loansMadeOnOrAfterJuly2026` work as
+in the plan comparison above.
 
 **It answers half the question on purpose, and says so.** The engine models the loan side exactly and
 does not model the tax cost of filing separately — lost credits, worse brackets, community-property
@@ -120,7 +136,8 @@ poverty guidelines, tax brackets, RAP/OBBB implementation guidance, court challe
 copied into an npm package is wrong within months and cannot be corrected in the installs that
 already exist. Calling a maintained endpoint is the only shape of this tool that stays true.
 
-**Here:** the input schemas, the HTTP call, and error handling that passes the API's own
+**Here:** the input schemas, the HTTP call, the 2026-27 federal rate per loan type that is sent
+when no rate is given (an award-year input, not repayment math), and error handling that passes the API's own
 field-level messages through to the model instead of flattening them into "request failed."
 
 ## Limits
